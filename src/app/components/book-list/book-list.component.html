@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>Books By Famous Authors</h2>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Language</th>
+            <th scope="col">Year</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books">
+            <th scope="row">1</th>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.language}}</td>
+            <td>{{book.year}}</td>
+            <td>
+              <button (click) = "navigate('/details')" type="button" class="btn btn-primary">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button (click) = "navigate('/edit')" type="button" class="btn btn-success">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button (click) = "navigate('/delete')" type="button" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
