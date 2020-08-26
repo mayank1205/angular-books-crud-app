@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BooksService } from 'src/app/services/books.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-book',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddBookComponent implements OnInit {
 
-  constructor() { }
+  form;
+
+  constructor(private bookService: BooksService) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      title: new FormControl(''),
+      author: new FormControl(''),
+      language: new FormControl(''),
+      year: new FormControl('')
+   });
+  }
+
+  submit() {
+    this.bookService.addBook(this.form.value).subscribe((data: any) => {
+      if (data.success) {
+        //
+      } else {
+        //
+      }
+    });
   }
 
 }

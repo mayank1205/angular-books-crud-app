@@ -1,25 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BooksService } from 'src/app/services/books.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { BooksService } from "src/app/services/books.service";
 
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss']
+  selector: "app-book-list",
+  templateUrl: "./book-list.component.html",
+  styleUrls: ["./book-list.component.scss"],
 })
 export class BookListComponent implements OnInit {
-
-  constructor(private router: Router, private bookService: BooksService) { }
+  constructor(private router: Router, private bookService: BooksService) {}
 
   books = [];
+  booksCount = 0;
+  currentBookId;
   ngOnInit() {
+    this.getBooks();
+  }
+
+  getBooks() {
     this.bookService.getBooks().subscribe((data: any) => {
-      this.books = data;
+      this.books = data.data;
+      this.booksCount = data.count;
     });
   }
 
-  navigate(route: string) {
-
+  setCurrentBook(id) {
+    console.log(id);
+    this.currentBookId = id;
   }
 
+  deleteCurrentBook() {
+    console.log("gets called?");
+    this.bookService.deleteBook(this.currentBookId).subscribe((data: any) => {
+      if (data.success) {
+        this.books = data.data;
+      } else {
+      }
+    });
+  }
+
+  navigate(route: string) {}
 }

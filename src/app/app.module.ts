@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule
   ],
