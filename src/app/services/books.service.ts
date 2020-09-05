@@ -25,6 +25,6 @@ export class BooksService {
   }
 
   getBook(id: any) {
-    return this.http.get(`${environment.API_URL}/books`);
+    return this.http.get(`${environment.API_URL}/books/${id}`);
   }
 }

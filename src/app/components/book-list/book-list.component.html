@@ -59,6 +59,7 @@
               </button>
             </td>
           </tr>
+          <tr *ngIf="books.length < 1" aria-rowspan="6"><td style="text-align: center;" colspan="6">No Books Found</td></tr>
         </tbody>
       </table>
     </div>
@@ -74,7 +75,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <app-add-book></app-add-book>
+          <app-add-book (getListChange)='callGetBooks($event)'></app-add-book>
         </div>
       </div>
     </div>
@@ -90,7 +91,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <app-book-details></app-book-details>
+          <app-book-details [(bookId)] = "currentBookId" [(bookDetails)]="editBook"></app-book-details>
         </div>
       </div>
     </div>
@@ -106,7 +107,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <app-edit-book></app-edit-book>
+          <app-edit-book [(bookId)] = "currentBookId" [(editBook)]="editBook" (getListChange)='callGetBooks($event)'></app-edit-book>
         </div>
       </div>
     </div>

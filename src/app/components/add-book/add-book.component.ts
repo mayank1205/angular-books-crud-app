@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BooksService } from 'src/app/services/books.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class AddBookComponent implements OnInit {
 
   form;
+  @Output() getListChange = new EventEmitter(false);
 
   constructor(private bookService: BooksService) { }
 
@@ -25,9 +26,11 @@ export class AddBookComponent implements OnInit {
   submit() {
     this.bookService.addBook(this.form.value).subscribe((data: any) => {
       if (data.success) {
-        //
+        console.log('came here?');
+        this.getListChange.emit(true);
       } else {
         //
+        console.log('came here else case?');
       }
     });
   }
