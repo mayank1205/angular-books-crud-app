@@ -35,12 +35,18 @@ export class BookListComponent implements OnInit {
 
   setCurrentBook(id) {
     console.log(id);
-    this.currentBookId = id;
-    this.editBook.next(this.currentBookId);
+    if(id) {
+      console.log(id);
+      this.currentBookId = id;
+      this.editBook.next(this.currentBookId);
+    }
   }
 
   deleteCurrentBook() {
     console.log("gets called?");
+    if(!this.currentBookId) {
+      return;
+    }
     this.bookService.deleteBook(this.currentBookId).subscribe((data: any) => {
       if (data.success) {
         this.books = data.data;

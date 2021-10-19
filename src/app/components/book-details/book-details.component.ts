@@ -16,10 +16,16 @@ export class BookDetailsComponent implements OnInit {
   constructor(private booksService: BooksService) { }
 
   ngOnInit() {
+    if(!this.bookId) {
+      return
+    }
     this.booksService.getBook(this.bookId).subscribe((res: any) => {
       this.book = res.data;
     });
     this.bookDetails.subscribe(id => {
+      if(!id) {
+        return;
+      }
       console.log(id)
       this.booksService.getBook(id).subscribe((res: any) => {
         console.log(res)

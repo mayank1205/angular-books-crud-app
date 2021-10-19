@@ -27,7 +27,9 @@ export class EditBookComponent implements OnInit {
    });
 
     this.editBook.subscribe(id => {
-      console.log(id)
+      if(!id) {
+        return;
+      }
       this.bookService.getBook(id).subscribe((res: any) => {
         let book = res.data;
         console.log(book);

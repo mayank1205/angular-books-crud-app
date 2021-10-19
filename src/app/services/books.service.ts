@@ -21,7 +21,7 @@ export class BooksService {
   }
 
   updateBook(id: any, book: any) {
-    return this.http.post(`${environment.API_URL}/books/${id}`, book);
+    return this.http.put(`${environment.API_URL}/books/${id}`, book);
   }
 
   getBook(id: any) {
